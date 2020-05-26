@@ -36,13 +36,15 @@ let rooms = {
     roomId: 'room1',
     roomName: 'TechHunting Team',
     users: [ 'vietpa', 'hoangfinnair', 'stevedoan' ],
-    conversationId: 'Com_ID1'
+    conversationId: 'Com_ID1',
+    owners: [ 'vietpa']
   },
   'room2': {
     roomId: 'room2',
     roomName: 'Dev Team',
     users: [ 'vietpa', 'hoangfinnair'],
-    conversationId: 'Com_ID2'
+    conversationId: 'Com_ID2',
+    owners: [ 'hoangfinnair' ]
   },
 }
 
