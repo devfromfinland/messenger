@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.login-panel {
+  max-width: 20rem;
+  margin: 2rem auto 0;
+}
+
+.user-name {
+  line-height: 2rem;
+}
+
+.user-name img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  float: left;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.user-name p {
+  /* vertical-align: middle; */
+  margin: auto;
+  padding: 0.5rem;
+}
