@@ -6,3 +6,19 @@ export function setAuthedUser (username) {
     username,
   }
 }
+
+export function handleLogOut(username) {
+  return (dispatch) => {
+    dispatch(setAuthedUser(''))
+
+    // update 'username' in statusUsers
+  }
+}
+
+export function handleLogin(username) {
+  return (dispatch) => {
+    dispatch(setAuthedUser(username))
+
+    // update 'username' in statusUsers
+  }
+}

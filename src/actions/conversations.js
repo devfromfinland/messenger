@@ -23,3 +23,25 @@ export function addConversation (conversation) {
     conversation // { conversationId, users, room, messages }
   }
 }
+
+export function handleNewMessage (message, conversationId) {
+  return (dispatch) => {
+    // console.log('@action, message: ', message)
+    // console.log('@action, conversationId: ', conversationId)
+    dispatch(addMessage(message, conversationId))
+
+    // save to database, if error, remove the recently added message
+    
+  }
+}
+
+export function handleNewConversation (conversation) {
+  return (dispatch) => {
+    // save to redux
+    dispatch(addConversation(conversation))
+
+    // save to database, if error, remove the recently added conversation
+    
+  }
+
+}

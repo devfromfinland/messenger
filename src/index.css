@@ -35,3 +35,59 @@ code {
   margin: auto;
   padding: 0.5rem;
 }
+
+.self {
+  text-align: left;
+  /* border: 1px solid black;
+  border-width: 50%;
+  border-radius: 1rem; */
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+}
+
+.friend {
+  text-align: right;
+  color: blue;
+  /* border: 1px solid blue;
+  border-width: 50%;
+  border-radius: 1rem; */
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+}
+
+.chat-username {
+  font-weight: bold;
+}
+
+.chat-date {
+  font-size: small;
+  color: grey;
+}
+
+.chat-content {
+  padding-top: 0.5 rem;
+}
+
+.chat-area {
+  border: 1px solid black;
+  border-radius: 2rem 0 0 0;
+  overflow: auto;
+  height: 20rem;
+}
+
+.chat-input {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.chat-text {
+  border: 1px solid black;
+  border-top-left-radius: 0;
+  background-color: #f8f9fa;
+}
+
+.chat-text:focus {
+  background-color: rgba(0, 123, 255, 0.1);
+  box-shadow: none;
+  outline: none;
+}

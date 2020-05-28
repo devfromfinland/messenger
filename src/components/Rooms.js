@@ -42,30 +42,7 @@ class Rooms extends Component {
 
     return(
       <div className='text-center mt-5 mb-5'>
-        <div className='mb-4'>
-          <h3>Rooms (x available)</h3>
-        </div>
-
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Room name</th>
-              <th>User count</th>
-            </tr>
-          </thead>
-          <tbody>
-            { rooms && rooms.map((room) => 
-              <tr key={room.roomId}>
-                <td>
-                  {room.roomName}
-                </td>
-                <td>
-                  {room.users.length} {room.users.length > 1 ? 'users' : 'user'}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </Table>
+        ROOM CHAT HERE
       </div>
     )
   }

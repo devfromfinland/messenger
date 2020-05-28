@@ -5,10 +5,14 @@
  */
 
  // STAGE 1:
-import { _getRooms, _getConversations, _getUsers } from './_DATA'
+import { _getRooms, _getConversations, _getUsers, _getAuthedUsers } from './_DATA'
 
 export function getUsers() {
   return _getUsers()
+}
+
+export function getAuthedUsers() {
+  return _getAuthedUsers()
 }
 
 export function getRooms() {
@@ -24,12 +28,13 @@ export function getInitialData() {
     _getUsers(),
     _getRooms(),
     _getConversations(),
-  ]).then(([users, rooms, conversations]) => {
-    console.log('api, users: ', users)
+    _getAuthedUsers(),
+  ]).then(([users, rooms, conversations, authedUsers]) => {
     return ({
       users,
       rooms,
       conversations,
+      authedUsers,
     })
   })
 }

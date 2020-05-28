@@ -16,5 +16,5 @@ export function formatMessage (username, content, timestamp, toUser = null, toRo
 
 // very simple ID generation of a message
 export function generateMsgId (username, timestamp) {
-  return '' + username + timestamp
+  return '' + username + '-' + timestamp
 }

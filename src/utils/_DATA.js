@@ -11,24 +11,35 @@ let users = {
   'vietpa': {
     username: 'vietpa',
     name: 'Viet Phan',
-    avatarURL: '',
+    avatarURL: '/img/viet.jpg',
     conversations: [ 'Com_ID1', 'Com_ID2' ],
     rooms: [ 'room1', 'room2' ]
   },
   'hoangfinnair': {
     username: 'hoangfinnair',
     name: 'Hoang',
-    avatarURL: '',
+    avatarURL: '/img/hoang.jpg',
     conversations: [ 'Com_ID1', 'Com_ID2' ],
     rooms: [ 'room1', 'room2' ]
   },
   'stevedoan': {
     username: 'stevedoan',
     name: 'Tho Doan',
-    avatarURL: '',
+    avatarURL: '/img/tho.jpg',
     conversations: [ 'Com_ID1' ],
     rooms: [ 'room1' ]
   },
+}
+
+let authedUsers = {
+  'vietpa': {
+    username: 'vietpa',
+    status: 'online'
+  },
+  'hoangfinnair': {
+    username: 'hoangfinnair',
+    status: 'idle'
+  }
 }
 
 let rooms = {
@@ -53,83 +64,89 @@ let conversations = {
     conversationId: 'Com_ID1',
     users: [ 'vietpa', 'hoangfinnair', 'stevedoan' ],
     room: 'room1',
-    messages: [
-      {
+    messages: {
+      'vietpa-1590507105088': {
         msgId: 'vietpa-1590507105088',
         username: 'vietpa',
         timestamp: 1590507105088,
         content: 'Hi team'
       },
-      {
+      'hoangfinnair-1590593505088': {
         msgId: 'hoangfinnair-1590593505088',
         username: 'hoangfinnair',
         timestamp: 1590593505088,
         content: 'Hi anh Viet, hi team :)'
       },
-    ]
+    }
   },
   'Com_ID2': {
     conversationId: 'Com_ID2',
     users: [ 'vietpa', 'hoangfinnair'],
     room: 'room2',
-    messages: [
-      {
+    messages: {
+      'hoangfinnair-1590507115088': {
         msgId: 'hoangfinnair-1590507115088',
         username: 'hoangfinnair',
         timestamp: 1590507115088,
         content: 'Hi anh Viet, I created this room for us to discuss about software development'
       },
-      {
+      'vietpa-1590593525088': {
         msgId: 'vietpa-1590593525088',
         username: 'vietpa',
         timestamp: 1590593525088,
         content: 'OK Hoang'
       },
-    ]
+    }
   },
   'Com_ID3': {
     conversationId: 'Com_ID3',
     users: [ 'vietpa', 'stevedoan'],
     room: null,
-    messages: [
-      {
+    messages: {
+      'stevedoan-1590507135088': {
         msgId: 'stevedoan-1590507135088',
         username: 'stevedoan',
         timestamp: 1590507135088,
         content: 'Hi anh Viet, shall we reserve another team meeting to discuss UX/UI matter?'
       },
-      {
+      'vietpa-1590593535088': {
         msgId: 'vietpa-1590593535088',
         username: 'vietpa',
         timestamp: 1590593535088,
         content: 'Yes Steve, please book a time for team'
       },
-    ]
+    }
   },
   'Com_ID4': {
     conversationId: 'Com_ID4',
     users: [ 'vietpa', 'hoangfinnair'],
     room: null,
-    messages: [
-      {
+    messages: {
+      'hoangfinnair-1590507145088': {
         msgId: 'hoangfinnair-1590507145088',
         username: 'hoangfinnair',
         timestamp: 1590507145088,
         content: 'a room for dev team has just been created'
       },
-      {
+      'vietpa-1590593555088': {
         msgId: 'vietpa-1590593555088',
         username: 'vietpa',
         timestamp: 1590593555088,
         content: 'Thanks Hoang'
       },
-    ]
+    }
   },
 }
 
 export function _getUsers() {
   return new Promise((res, rej) => {
     setTimeout(() => res({...users}), 1000)
+  })
+}
+
+export function _getAuthedUsers() {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({...authedUsers}), 1000)
   })
 }
 
