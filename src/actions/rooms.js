@@ -23,3 +23,15 @@ export function joinRoom(username, roomId) {
     roomId,
   }
 }
+
+export function handleJoinRoom(username, roomId) {
+  return (dispatch) => {
+    // update rooms
+    dispatch(joinRoom(username, roomId))
+
+    // update conversations
+
+    // update database, if error, remove the user from that room
+    //
+  }
+}

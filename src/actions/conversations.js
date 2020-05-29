@@ -1,6 +1,7 @@
 export const RECEIVE_CONVERSATIONS = 'RECEIVE_CONVERSATIONS'
 export const ADD_CONVERSATION = 'ADD_CONVERSATION'
 export const ADD_MESSAGE = 'ADD_MESSAGE'
+export const ADD_USER_TO_COM = 'ADD_USER_TO_COM'
 
 export function receiveConversations (conversations) {
   return {
@@ -24,6 +25,14 @@ export function addConversation (conversation) {
   }
 }
 
+export function addUserToConversation (username, conversationId) {
+  return {
+    type: ADD_USER_TO_COM,
+    username,
+    conversationId,
+  }
+}
+
 export function handleNewMessage (message, conversationId) {
   return (dispatch) => {
     // console.log('@action, message: ', message)
@@ -41,7 +50,16 @@ export function handleNewConversation (conversation) {
     dispatch(addConversation(conversation))
 
     // save to database, if error, remove the recently added conversation
-    
+    //
   }
+}
 
+export function handleAddUserToConversation (username, conversationId) {
+  return (dispatch) => {
+    // save to redux
+    dispatch(addUserToConversation(username, conversationId))
+
+    // save to database, if error, remove it from redux
+    //
+  }
 }

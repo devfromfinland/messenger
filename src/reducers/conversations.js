@@ -1,15 +1,29 @@
-import { RECEIVE_CONVERSATIONS, ADD_CONVERSATION, ADD_MESSAGE } from '../actions/conversations'
+import { 
+  RECEIVE_CONVERSATIONS, 
+  ADD_CONVERSATION, 
+  ADD_MESSAGE, 
+  ADD_USER_TO_COM 
+} from '../actions/conversations'
 
 export default function conversations(state = null, action) {
   switch (action.type) {
-    case ADD_MESSAGE:
-      // console.log('@reducer, action: ', action)
-      // console.log('@reducer, state: ', state)
-      const { message } = action
-      const appendMessage = {
-        [message.msgId]: message
+    case ADD_USER_TO_COM:
+      // console.log('@reducer conversations, action: ', action)
+      // console.log('@reducer conversations, state: ', state)
+      return {
+        ...state,
+        [action.conversationId]: {
+          ...state[action.conversationId],
+          users: [
+            ...state[action.conversationId].users,
+            action.username
+          ]
+        }
       }
-      // TODO: add action.message to action.conversationId in state
+    case ADD_MESSAGE:
+      // console.log('@reducer conversations, action: ', action)
+      // console.log('@reducer conversations, state: ', state)
+      const { message } = action
       return {
         ...state,
         [action.conversationId]: {
@@ -21,9 +35,8 @@ export default function conversations(state = null, action) {
         }
       }
     case ADD_CONVERSATION:
-      // TODO: add new action.conversation to state
-      console.log('@reducer, action: ', action)
-      console.log('@reducer, state: ', state)
+      // console.log('@reducer conversations, action: ', action)
+      // console.log('@reducer conversations, state: ', state)
       return {
         ...state,
         [action.conversation.conversationId]: action.conversation

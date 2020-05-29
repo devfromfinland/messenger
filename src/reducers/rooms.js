@@ -7,7 +7,18 @@ export default function authedUser(state = null, action) {
       return action.rooms
     case JOIN_ROOM:
       // TODO: add action.username to state's action.roomId
-      return action.rooms
+      // console.log('@reducer, action: ', action)
+      // console.log('@reducer, state: ', state)
+      return {
+        ...state,
+        [action.roomId]: {
+          ...state[action.roomId],
+          users: [
+            ...state[action.roomId].users,
+            action.username
+          ]
+        }
+      }
     case RECEIVE_ROOMS:
       return action.rooms
     default:
