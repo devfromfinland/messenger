@@ -18,3 +18,11 @@ export function formatMessage (username, content, timestamp, toUser = null, toRo
 export function generateMsgId (username, timestamp) {
   return '' + username + '-' + timestamp
 }
+
+export function generateRoomId() {
+  return 'R' + Date.now()
+}
+
+export function generateConversationId() {
+  return 'C' + Date.now()
+}

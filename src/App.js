@@ -9,6 +9,7 @@ import Rooms from './components/Rooms'
 // import Users from './components/Users'
 import Login from './components/Login'
 import Messages from './components/Messages'
+import NewRoom from './components/NewRoom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class App extends Component {
@@ -41,6 +42,7 @@ class App extends Component {
                   <Route path='/' exact component={Dashboard} />
                   <Route path='/rooms/:id' component={Rooms} />
                   <Route path='/messages/:id' component={Messages} />
+                  <Route path='/createRoomChat' component={NewRoom} />
                   <Route component={EmptyPage}/>
                 </Switch>
             }

@@ -4,7 +4,13 @@ export default function authedUser(state = null, action) {
   switch (action.type) {
     case CREATE_ROOM:
       // TODO: add new action.room to state
-      return action.rooms
+      console.log('@reducer, action: ', action)
+      console.log('@reducer, state: ', state)
+      const { room } = action
+      return { 
+        ...state, 
+        [room.roomId]: room 
+      }
     case JOIN_ROOM:
       // TODO: add action.username to state's action.roomId
       // console.log('@reducer, action: ', action)

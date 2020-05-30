@@ -91,3 +91,8 @@ code {
   box-shadow: none;
   outline: none;
 }
+
+.error-input {
+  color: red;
+  font-size: small;
+}

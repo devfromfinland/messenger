@@ -17,7 +17,7 @@ class Messages extends Component {
   }
 
   componentDidMount() {
-    const { authedUser, toUser, conversations, users } = this.props
+    const { authedUser, toUser, users } = this.props
 
     if (toUser === authedUser || !users.find((b) => b.username === toUser)) {
       return

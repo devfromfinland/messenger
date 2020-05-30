@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Table } from 'react-bootstrap'
+import { Container, Row, Col, Table, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Chat, MeetingRoom } from '@material-ui/icons'
+import { handleJoinRoom } from '../actions/rooms'
+import { handleAddUserToConversation } from '../actions/conversations'
 // import Rooms from './Rooms'
 // import Users from './Users'
 
@@ -11,6 +13,15 @@ class Dashboard extends Component {
     // check redux's state
 
     return 'offline' // other return values: 'online', 'idle'
+  }
+
+  onJoinRoom = (e, roomId, conversationId) => {
+    e.preventDefault()
+
+    const { authedUser, dispatch, rooms } = this.props
+
+    dispatch(handleJoinRoom(authedUser, roomId))
+    dispatch(handleAddUserToConversation(authedUser, conversationId))
   }
 
   render() {
@@ -48,14 +59,22 @@ class Dashboard extends Component {
                       {room.users.length} {room.users.length > 1 ? 'users' : 'user'}
                     </td>
                     <td>
-                      <Link to={'/rooms/' + room.roomId}>
-                        <MeetingRoom color='primary' />
-                      </Link>
+                      { room.users.find((a) => a === authedUser) 
+                      ? <Link to={'/rooms/' + room.roomId}>
+                          <Button variant='link'>Enter room</Button>
+                        </Link>
+                      : <Button variant='link' onClick={(e) => this.onJoinRoom(e, room.roomId, room.conversationId)}>Join room</Button>
+                      }
                     </td>
                   </tr>
                 )}
               </tbody>
             </Table>
+
+            <Link to='/createRoomChat'>
+              <Button variant='primary'>Create a new room</Button>
+            </Link>
+            
           </Col>
           <Col style={{flex: 1}}>
             {' '}
