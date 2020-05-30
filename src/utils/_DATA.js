@@ -57,13 +57,6 @@ let rooms = {
     conversationId: 'Com_ID2',
     owners: [ 'hoangfinnair' ]
   },
-  // 'room3': {
-  //   roomId: 'room3',
-  //   roomName: 'Escape room',
-  //   users: ['vietpa'],
-  //   conversationId: 'Com_ID5', // generate a new ID when a new room is created
-  //   owners: [ 'vietpa' ]
-  // }
 }
 
 let conversations = {

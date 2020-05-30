@@ -18,16 +18,16 @@ class Dashboard extends Component {
   onJoinRoom = (e, roomId, conversationId) => {
     e.preventDefault()
 
-    const { authedUser, dispatch, rooms } = this.props
+    const { authedUser, dispatch } = this.props
 
     dispatch(handleJoinRoom(authedUser, roomId))
     dispatch(handleAddUserToConversation(authedUser, conversationId))
   }
 
   render() {
-    const { authedUser, conversations, rooms, users, statusUsers } = this.props
+    const { authedUser, rooms, users, statusUsers } = this.props
 
-    console.log('@Dashboard, statusUsers: ', statusUsers['vietpa'].status)
+    // console.log('@Dashboard, statusUsers: ', statusUsers['vietpa'].status)
 
     return(
       <Container>
@@ -61,9 +61,9 @@ class Dashboard extends Component {
                     <td>
                       { room.users.find((a) => a === authedUser) 
                       ? <Link to={'/rooms/' + room.roomId}>
-                          <Button variant='link'>Enter room</Button>
+                          <Button variant='link' style={{padding: 0}}>Enter room</Button>
                         </Link>
-                      : <Button variant='link' onClick={(e) => this.onJoinRoom(e, room.roomId, room.conversationId)}>Join room</Button>
+                      : <Button variant='link' style={{padding: 0}} onClick={(e) => this.onJoinRoom(e, room.roomId, room.conversationId)}>Join room</Button>
                       }
                     </td>
                   </tr>

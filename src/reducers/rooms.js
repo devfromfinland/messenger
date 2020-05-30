@@ -3,9 +3,8 @@ import { RECEIVE_ROOMS, CREATE_ROOM, JOIN_ROOM } from '../actions/rooms'
 export default function authedUser(state = null, action) {
   switch (action.type) {
     case CREATE_ROOM:
-      // TODO: add new action.room to state
-      console.log('@reducer, action: ', action)
-      console.log('@reducer, state: ', state)
+      // console.log('@reducer, action: ', action)
+      // console.log('@reducer, state: ', state)
       const { room } = action
       return { 
         ...state, 

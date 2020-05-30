@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid'
+
 export function formatDate (timestamp) {
   const d = new Date(timestamp)
   const time = d.toLocaleTimeString('en-US')
@@ -20,9 +22,9 @@ export function generateMsgId (username, timestamp) {
 }
 
 export function generateRoomId() {
-  return 'R' + Date.now()
+  return uuidv4()
 }
 
 export function generateConversationId() {
-  return 'C' + Date.now()
+  return uuidv4()
 }

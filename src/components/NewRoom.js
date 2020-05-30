@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { generateConversationId, generateRoomId } from '../utils/helpers'
-import { v4 as uuidv4 } from 'uuid'
 import { handleNewRoom } from '../actions/rooms'
 import { handleNewConversation } from '../actions/conversations'
 
@@ -16,19 +15,18 @@ class NewRoom extends Component {
     e.preventDefault()
 
     const { rooms, authedUser, dispatch } = this.props
-    const { roomName, errorMsg } = this.state
+    const { roomName } = this.state
 
-    // check if the name is already exist
+    // check if the name is already exist, if yes -> show an error message
     if (rooms.find((a) => a.roomName === roomName)) {
-      this.setState({errorMsg: 'This name is taken. Try another one!'})
+      this.setState(() => ({ errorMsg: 'This name is taken. Try another one!' }))
     } else {
-      const roomId = uuidv4()
-      const conversationId = uuidv4()
+      const roomId = generateRoomId()
+      const conversationId = generateConversationId()
 
       const newRoom = {
-        //{ roomId, users, conversationId, roomName }
         roomId,
-        users: [authedUser], // first user (room owner)
+        users: [authedUser], // first user = room creator/owner
         roomName,
         owners: [authedUser],
         conversationId,
@@ -44,7 +42,10 @@ class NewRoom extends Component {
       dispatch(handleNewRoom(newRoom))
       dispatch(handleNewConversation(newConversation))
 
-      console.log('newRoom: ', newRoom)
+      this.setState(() => ({ errorMsg: '' }))
+
+      // redirect to Dashboard after a new room is created
+      this.props.history.push('/')
     }
     
   }
@@ -61,7 +62,8 @@ class NewRoom extends Component {
             <input 
               type='text' 
               placeholder="Enter room's name" 
-              value={this.state.roomName} 
+              value={this.state.roomName}
+              style={{padding: '0.8rem'}} 
               onChange={(e) => this.setState({ roomName: e.target.value})}/>
           </div>
 

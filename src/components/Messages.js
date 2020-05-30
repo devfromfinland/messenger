@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Container, Row, Col, InputGroup, Button, Form, FormControl } from 'react-bootstrap'
+import { Container, Row, Col, InputGroup, Button, Form } from 'react-bootstrap'
 import Message from './Message'
-import { generateMsgId } from '../utils/helpers'
+import { generateMsgId, generateConversationId } from '../utils/helpers'
 import { handleNewMessage, handleNewConversation } from '../actions/conversations'
 import EmptyPage from './EmptyPage'
 
@@ -46,7 +46,7 @@ class Messages extends Component {
     // check if this is the first message
     // if yes --> create a new conversationId before adding msg
     if (!conversations) {
-      comId = 'Com_ID5' // hard-code for testing, should call generateConversationId() function
+      comId = generateConversationId()
       let newConversation = {
         conversationId: comId,
         users: [authedUser, toUser],
