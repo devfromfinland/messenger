@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { ListGroup } from 'react-bootstrap'
-import sampleAvatar from '../utils/sampleAvatar.jpg'
 import { connect } from 'react-redux'
 import { handleLogin } from '../actions/authedUser'
 
@@ -15,9 +14,7 @@ class Login extends Component {
     // update authedUser state
     dispatch(handleLogin(e.currentTarget.id))
 
-    // redirect to the requested URL
-    // const currentURL = this.props.match.url
-    // this.props.history.push(currentURL)
+    // need to redirect somewhere?
   }
 
   render() {
@@ -51,7 +48,6 @@ class Login extends Component {
         You are logged in as {authedUser}
       </div> 
     }
-
   }
 }
 

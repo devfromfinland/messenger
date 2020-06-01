@@ -39,6 +39,10 @@ let authedUsers = {
   'hoangfinnair': {
     username: 'hoangfinnair',
     status: 'idle'
+  },
+  'stevedoan': {
+    username: 'stevedoan',
+    status: 'offline'
   }
 }
 
@@ -139,25 +143,25 @@ let conversations = {
 }
 
 export function _getUsers() {
-  return new Promise((res, rej) => {
-    setTimeout(() => res({...users}), 1000)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve({...users}), 1000)
   })
 }
 
 export function _getAuthedUsers() {
-  return new Promise((res, rej) => {
-    setTimeout(() => res({...authedUsers}), 1000)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve({...authedUsers}), 1000)
   })
 }
 
 export function _getRooms() {
-  return new Promise((res, rej) => {
-    setTimeout(() => res({...rooms}), 1000)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve({...rooms}), 1000)
   })
 }
 
 export function _getConversations() {
-  return new Promise((res, rej) => {
-    setTimeout(() => res({...conversations}), 1000)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve({...conversations}), 1000)
   })
 }

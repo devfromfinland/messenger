@@ -102,55 +102,10 @@ class Rooms extends Component {
 
     const room = rooms[roomId]
 
-    // first time, then create a new conversation first
-    if (!conversations) {
-      return <Container>
-        <Row>
-          <Col className='text-right'>
-            <p>
-              Room name:{' '}
-              <strong>{room.roomName}</strong>
-            </p>
-            <p>
-              Members:{' '} 
-              <strong>{room.users.join(', ')}</strong>
-            </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col className='chat-area'>
-            <p>No conversation in this room yet. Write something to start room discussion!</p>
-
-            <div style={{ float:"left", clear: "both" }}
-              ref={(el) => { this.messagesEnd = el; }} />
-
-          </Col>
-        </Row>
-        <Row>
-          <Col className='chat-input'>
-            <Form onSubmit={this.onSubmit}>
-              <InputGroup className="mb-3">
-                <Form.Control
-                  type='text'
-                  placeholder='Enter text here...'
-                  value={text}
-                  onChange={(e) => this.setState({text: e.target.value})}
-                  className='chat-text'
-                />
-                <InputGroup.Append>
-                  <Button variant="primary" type='submit' style={{borderTopRightRadius: 0}}>Send</Button>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
-    }
-
-    let messages = Object.values(conversations.messages)
+    const messages = !conversations ? null : Object.values(conversations.messages)
       .sort((a, b) => a.timestamp - a.timestamp)
 
-    return(
+    return (
       <Container>
         <Row>
           <Col className='text-right'>
@@ -166,17 +121,17 @@ class Rooms extends Component {
         </Row>
         <Row>
           <Col className='chat-area'>
-            {messages.map((message) => 
-              <Message 
-                message={message}
-                isMe={message.username === authedUser ? true : false}
-                key={message.msgId}
-              />
-            )}
+            { (!messages || messages.length === 0)
+              ? <p className='pt-3'>No conversation in this room yet. Write something to start room discussion!</p>
+              : messages.map((message) => <Message 
+                  message={message}
+                  isMe={message.username === authedUser ? true : false}
+                  key={message.msgId}
+                />)}
 
+            {/* This div is for automatically scrolling to the end of conversation */}
             <div style={{ float:"left", clear: "both" }}
               ref={(el) => { this.messagesEnd = el; }} />
-
           </Col>
         </Row>
         <Row>
@@ -191,7 +146,12 @@ class Rooms extends Component {
                   className='chat-text'
                 />
                 <InputGroup.Append>
-                  <Button variant="primary" type='submit' style={{borderTopRightRadius: 0}}>Send</Button>
+                  <Button 
+                    variant="primary" 
+                    type='submit' 
+                    style={{borderTopRightRadius: 0}}>
+                    Send
+                  </Button>
                 </InputGroup.Append>
               </InputGroup>
             </Form>

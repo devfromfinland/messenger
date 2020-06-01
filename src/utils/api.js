@@ -4,8 +4,11 @@
  * Stage 2: communicate with real server
  */
 
- // STAGE 1:
+ // STAGE 1: Fake server (from _DATA.js file)
 import { _getRooms, _getConversations, _getUsers, _getAuthedUsers } from './_DATA'
+
+// STAGE 2: Real server, localhost:4000
+
 
 export function getUsers() {
   return _getUsers()

@@ -27,7 +27,7 @@ class Messages extends Component {
   }
   
   componentDidUpdate() {
-    const { authedUser, toUser, conversations, users } = this.props
+    const { authedUser, toUser, users } = this.props
 
     if (toUser === authedUser || !users.find((b) => b.username === toUser)) {
       return
@@ -84,16 +84,27 @@ class Messages extends Component {
       return <EmptyPage />
     }
 
+    // if user is exist and there was conversation -> load and show the conversation
+    const messages = !conversations ? null : Object.values(conversations.messages)
+      .sort((a, b) => a.timestamp - b.timestamp)
+
     // if user is exist, but no conversation yet -> start a new conversation
-    if (!conversations) {
-      return <Container>
+    return (
+      <Container>
         <Row>
           <Col className='chat-area'>
-            Feel free to start your conversation
-
+            { (!messages || messages.length === 0)
+              ? <p className='pt-3'>Feel free to start your conversation</p>
+              : messages.map((message) => 
+                <Message 
+                  message={message}
+                  isMe={message.username === authedUser ? true : false}
+                  key={message.msgId}
+                />
+            )}
+            
             <div style={{ float:"left", clear: "both" }}
               ref={(el) => { this.messagesEnd = el; }} />
-
           </Col>
         </Row>
         <Row>
@@ -120,48 +131,6 @@ class Messages extends Component {
           </Col>
         </Row>
       </Container>
-    }
-
-    // if user is exist and there was conversation -> load and show the conversation
-    const messages = Object.values(conversations.messages)
-      .sort((a, b) => a.timestamp - b.timestamp)
-
-    return (
-      <Container>
-        <Row>
-          <Col className='chat-area'>
-            {messages.map((message) => 
-              <Message 
-                message={message}
-                isMe={message.username === authedUser ? true : false}
-                key={message.msgId}
-              />
-            )}
-
-            <div style={{ float:"left", clear: "both" }}
-              ref={(el) => { this.messagesEnd = el; }} />
-
-          </Col>
-        </Row>
-        <Row>
-          <Col className='chat-input'>
-            <Form onSubmit={this.onSubmit}>
-              <InputGroup className="mb-3">
-                <Form.Control
-                  type='text'
-                  placeholder='Enter text here...'
-                  value={text}
-                  onChange={(e) => this.setState({text: e.target.value})}
-                  className='chat-text'
-                />
-                <InputGroup.Append>
-                  <Button variant="primary" type='submit' style={{borderTopRightRadius: 0}}>Send</Button>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
     )
   }
 }
@@ -173,8 +142,10 @@ function mapStateToProps({ authedUser, users, conversations }, props) {
     authedUser,
     toUser,
     users: Object.values(users),
-    conversations: Object.values(conversations) // filter: not in a room, and contain both users in a conversation
+    conversations: Object.values(conversations)
+      // filter: not in a room
       .filter((a) => a.room === null)
+      // filter: contain both users in a conversation
       .filter((b) => b.users.find((c) => c === toUser) 
         && b.users.find((d) => d === authedUser))[0],
   }
